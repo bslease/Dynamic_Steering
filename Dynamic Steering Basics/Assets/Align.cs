@@ -34,7 +34,6 @@ public class Align
         // get the naive direction to the target
         //float rotation = Mathf.DeltaAngle(character.transform.eulerAngles.y, target.transform.eulerAngles.y);
         float rotation = Mathf.DeltaAngle(character.transform.eulerAngles.y, getTargetAngle());
-        //Debug.Log(rotation);
         float rotationSize = Mathf.Abs(rotation);
 
         // check if we are there, return no steering
@@ -56,14 +55,12 @@ public class Align
 
         // the final targetRotation combines speed (already in the variable) and direction
         targetRotation *= rotation / rotationSize;
-        //Debug.Log(targetRotation);
 
         // acceleration tries to get to the target rotation
+        // something is breaking my angularVelocty... check if NaN and use 0 if so
         float currentAngularVelocity = float.IsNaN(character.angularVelocity) ? 0f : character.angularVelocity;
         result.angular = targetRotation - currentAngularVelocity;
-        //Debug.Log(character.angularVelocity);
         result.angular /= timeToTarget;
-        //Debug.Log(result.angular);
 
         // check if the acceleration is too great
         float angularAcceleration = Mathf.Abs(result.angular);
@@ -72,7 +69,6 @@ public class Align
             result.angular /= angularAcceleration;
             result.angular *= maxAngularAcceleration;
         }
-        //Debug.Log(result.angular);
 
         result.linear = Vector3.zero;
         return result;
