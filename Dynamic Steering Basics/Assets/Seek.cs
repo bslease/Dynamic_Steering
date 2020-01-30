@@ -11,7 +11,7 @@ public class Seek
 
     public bool flee = false;
 
-    public SteeringOutput getSteering()
+    public virtual SteeringOutput getSteering()
     {
         SteeringOutput result = new SteeringOutput();
 
