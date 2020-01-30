@@ -5,3 +5,4 @@ Demonstrates seek, flee, arrive, face, align and lookwheregoing behaviors while 
 - fuschia cube flees and looks where it's going
 - aqua cube arrives and aligns
 
+https://bslease.github.io/Dynamic_Steering/
