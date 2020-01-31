@@ -11,6 +11,11 @@ public class Seek
 
     public bool flee = false;
 
+    protected virtual Vector3 getTargetPosition()
+    {
+        return target.transform.position;
+    }
+
     public virtual SteeringOutput getSteering()
     {
         SteeringOutput result = new SteeringOutput();
@@ -18,11 +23,13 @@ public class Seek
         // Get the direction to the target
         if (flee)
         {
-            result.linear = character.transform.position - target.transform.position;
+            //result.linear = character.transform.position - target.transform.position;
+            result.linear = character.transform.position - getTargetPosition();
         }
         else
         {
-            result.linear = target.transform.position - character.transform.position;
+            //result.linear = target.transform.position - character.transform.position;
+            result.linear = getTargetPosition() - character.transform.position;
         }
 
         // give full acceleration along this direction

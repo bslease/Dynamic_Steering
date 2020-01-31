@@ -11,7 +11,7 @@ public class Align
     float maxRotation = 45f; // maxAngularVelocity
 
     // the radius for arriving at the target
-    float targetRadius = 1f;
+    //float targetRadius = 1f;
 
     // the radius for beginning to slow down
     float slowRadius = 10f;
