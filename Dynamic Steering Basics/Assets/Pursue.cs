@@ -31,10 +31,11 @@ public class Pursue : Seek
         }
 
         // 2. get the current velocity of our target and add an offset based on our prediction time
-        Kinematic myMovingTarget = target.GetComponent(typeof(Kinematic)) as Kinematic;
+        //Kinematic myMovingTarget = target.GetComponent(typeof(Kinematic)) as Kinematic;
+        Kinematic myMovingTarget = target.GetComponent<Kinematic>();
         if (myMovingTarget == null)
         {
-            // defaul to seek behavior for non-kinematic targets
+            // default to seek behavior for non-kinematic targets
             return base.getTargetPosition();
         }
 
