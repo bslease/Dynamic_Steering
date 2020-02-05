@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Seeker : Kinematic
 {
-    Seek myMoveType;
+    //Seek myMoveType;
+    ObstacleAvoidance myMoveType;
     Face mySeekRotateType;
     LookWhereGoing myFleeRotateType;
 
@@ -13,7 +14,8 @@ public class Seeker : Kinematic
     // Start is called before the first frame update
     void Start()
     {
-        myMoveType = new Seek();
+        //myMoveType = new Seek();
+        myMoveType = new ObstacleAvoidance();
         myMoveType.character = this;
         myMoveType.target = myTarget;
         myMoveType.flee = flee;
