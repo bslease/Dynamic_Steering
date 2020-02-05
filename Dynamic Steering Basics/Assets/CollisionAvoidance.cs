@@ -5,7 +5,7 @@ using UnityEngine;
 public class CollisionAvoidance
 {
     public Kinematic character;
-    public float maxAcceleration = 1f; // 0.5
+    public float maxAcceleration = 1f;
 
     // A list of potential targets
     public Kinematic[] targets;
@@ -26,7 +26,7 @@ public class CollisionAvoidance
         float firstMinSeparation = float.PositiveInfinity;
         float firstDistance = float.PositiveInfinity;
         Vector3 firstRelativePos = Vector3.positiveInfinity;
-        Vector3 firstRelativeVel = Vector3.positiveInfinity;
+        Vector3 firstRelativeVel = Vector3.zero;
 
         // Loop through each target
         Vector3 relativePos = Vector3.positiveInfinity;
@@ -34,21 +34,19 @@ public class CollisionAvoidance
         {
             // calculate the time to collision
             relativePos = target.transform.position - character.transform.position;
-            //relativePos = character.transform.position - target.transform.position;
+            // the next line is a bug in Millington
+            // the fix is on the following line
             //Vector3 relativeVel = target.linearVelocity - character.linearVelocity;
             Vector3 relativeVel = character.linearVelocity - target.linearVelocity;
             float relativeSpeed = relativeVel.magnitude;
             // this is timeToClosestApproach, not timeToCollision
             float timeToCollision = (Vector3.Dot(relativePos, relativeVel) / (relativeSpeed * relativeSpeed));
-            //Debug.Log(timeToCollision);
 
             // check if it is going to be a collision at all
             float distance = relativePos.magnitude;
             float minSeparation = distance - relativeSpeed * timeToCollision;
-            //Debug.Log(minSeparation);
             if (minSeparation > 2*radius)
             {
-                //Debug.Log("----");
                 continue; 
             }
 
@@ -69,30 +67,52 @@ public class CollisionAvoidance
         // if we have no target, then exit
         if (firstTarget == null)
         {
-            //Debug.Log("no collision imminent");
             return null;
         }
 
+        ///////////////////////////////////////////////////
+        // Millington actually steers you *toward* the target
+        // I have no idea why you'd want to do this
+        ///////////////////////////////////////////////////
+
         // if we're going to hit exactly, or if we're already
         // colliding, then do the steering based on current position.
-        if (firstMinSeparation <= 0 || firstDistance < 2*radius)
-        {
-            relativePos = firstTarget.transform.position - character.transform.position;
-            //relativePos = character.transform.position - firstTarget.transform.position;
-        }
-        else // otherwise cacluate the future relative position
-        {
-            relativePos = firstRelativePos + firstRelativeVel * shortestTime;
-        }
+        //if (firstMinSeparation <= 0 || firstDistance < 2*radius)
+        //{
+        //    relativePos = firstTarget.transform.position - character.transform.position;
+        //}
+        //else // otherwise cacluate the future relative position
+        //{
+        //    relativePos = firstRelativePos + firstRelativeVel * shortestTime;
+        //}
 
         // Avoid the target.
-        //Debug.Log("Will collide with " + firstTarget);
-        //Debug.Log(firstMinSeparation);
-        //Debug.Log(firstTarget);
-        //Debug.Log("current separation = " + (firstTarget.transform.position - character.transform.position).magnitude);
-        relativePos.Normalize();
+        //SteeringOutput result = new SteeringOutput();
+        //relativePos.Normalize();
+        //result.linear = relativePos * maxAcceleration;
+        //result.angular = 0;
+        //return result;
+
+        ////////////////////////////////////////
+        /// Let's see if we can do better
+        ////////////////////////////////////////
+
         SteeringOutput result = new SteeringOutput();
-        result.linear = relativePos * maxAcceleration;
+
+        // check for a head-on collision
+        float dotResult = Vector3.Dot(character.linearVelocity.normalized, firstTarget.linearVelocity.normalized);
+        if (dotResult < -0.9 && dotResult > -1.1)
+        {
+            // if we have an impending head-on collision. veer sideways
+            result.linear = -firstTarget.transform.right;
+        }
+        else
+        {
+            // otherwise, steer to pass behind our moving target
+            result.linear = -firstTarget.linearVelocity;
+        }
+        result.linear.Normalize();
+        result.linear *= maxAcceleration;
         result.angular = 0;
         return result;
     }
