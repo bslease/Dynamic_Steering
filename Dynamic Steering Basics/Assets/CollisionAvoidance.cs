@@ -101,7 +101,7 @@ public class CollisionAvoidance
 
         // check for a head-on collision
         float dotResult = Vector3.Dot(character.linearVelocity.normalized, firstTarget.linearVelocity.normalized);
-        if (dotResult < -0.9 && dotResult > -1.1)
+        if (dotResult < -0.9) // && dotResult > -1.1)
         {
             // if we have an impending head-on collision. veer sideways
             result.linear = -firstTarget.transform.right;
