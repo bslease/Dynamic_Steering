@@ -6,8 +6,8 @@ public class Flocker : Kinematic
 {
     public GameObject myCohereTarget;
     BlendedSteering mySteering;
-    Separation myMoveType;
-    LookWhereGoing myRotateType;
+    //Separation myMoveType;
+    //LookWhereGoing myRotateType;
 
     // Start is called before the first frame update
     void Start()
@@ -33,23 +33,30 @@ public class Flocker : Kinematic
         cohere.character = this;
         cohere.target = myCohereTarget;
 
-        mySteering = new BlendedSteering();
-        //mySteering.
-
-        myRotateType = new LookWhereGoing();
+        LookWhereGoing myRotateType = new LookWhereGoing();
         myRotateType.character = this;
-        myRotateType.target = myTarget;
+        //myRotateType.target = myTarget;
 
-        myMoveType = separate;
+        mySteering = new BlendedSteering();
+        mySteering.behaviors = new BehaviorAndWeight[3];
+        mySteering.behaviors[0] = new BehaviorAndWeight();
+        mySteering.behaviors[0].behavior = separate;
+        mySteering.behaviors[0].weight = 3f;
+        mySteering.behaviors[1] = new BehaviorAndWeight();
+        mySteering.behaviors[1].behavior = cohere;
+        mySteering.behaviors[1].weight = 0.5f;
+        mySteering.behaviors[2] = new BehaviorAndWeight();
+        mySteering.behaviors[2].behavior = myRotateType;
+        mySteering.behaviors[2].weight = 1f;
     }
 
     // Update is called once per frame
     protected override void Update()
     {
         steeringUpdate = new SteeringOutput();
-        steeringUpdate.linear = myMoveType.getSteering().linear;
-        steeringUpdate.angular = myRotateType.getSteering().angular;
-        //steeringUpdate = mySteering.getSteering();
+        //steeringUpdate.linear = myMoveType.getSteering().linear;
+        //steeringUpdate.angular = myRotateType.getSteering().angular;
+        steeringUpdate = mySteering.getSteering();
         base.Update();
     }
 }
