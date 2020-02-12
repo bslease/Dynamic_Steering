@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CollisionAvoidance
+public class CollisionAvoidance : SteeringBehavior
 {
     public Kinematic character;
     public float maxAcceleration = 1f;
@@ -14,7 +14,7 @@ public class CollisionAvoidance
     // have the same radius here).
     float radius = .1f; // .1
 
-    public SteeringOutput getSteering()
+    public override SteeringOutput getSteering()
     {
         // 1. Find the target that's closes to collision
         // Store the first collision time

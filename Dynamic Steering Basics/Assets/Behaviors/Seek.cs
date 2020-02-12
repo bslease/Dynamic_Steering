@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Seek
+public class Seek : SteeringBehavior
 {
     public Kinematic character;
     public GameObject target;
@@ -16,7 +16,7 @@ public class Seek
         return target.transform.position;
     }
 
-    public virtual SteeringOutput getSteering()
+    public override SteeringOutput getSteering()
     {
         SteeringOutput result = new SteeringOutput();
 

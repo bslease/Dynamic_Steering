@@ -21,13 +21,13 @@ public class ObstacleAvoidance : Seek
         if (Physics.Raycast(character.transform.position, character.linearVelocity, out hit, lookahead))
         {
             Debug.DrawRay(character.transform.position, character.linearVelocity * hit.distance, Color.yellow, 0.5f);
-            Debug.Log("Hit " + hit.collider);
+            //Debug.Log("Hit " + hit.collider);
             return hit.point - (hit.normal * avoidDistance);
         }
         else
         {
             Debug.DrawRay(character.transform.position, character.linearVelocity * lookahead, Color.white, 0.5f);
-            Debug.Log("Safe");
+            //Debug.Log("Safe");
             // nothing to avoid
             //return base.getTargetPosition();
         }

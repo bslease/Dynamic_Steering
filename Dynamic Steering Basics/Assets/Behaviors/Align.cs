@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Align
+public class Align : SteeringBehavior
 {
     public Kinematic character;
     public GameObject target;
@@ -27,7 +27,7 @@ public class Align
         return target.transform.eulerAngles.y;
     }
 
-    public SteeringOutput getSteering()
+    public override SteeringOutput getSteering()
     {
         SteeringOutput result = new SteeringOutput();
 
