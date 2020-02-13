@@ -19,7 +19,7 @@ public class PrioritySteering
             // check if we're above the threshold, if so return
             if (steering.linear.magnitude > epsilon || Mathf.Abs(steering.angular) > epsilon)
             {
-                Debug.Log(group.behaviors[0].behavior);
+                //Debug.Log(group.behaviors[0].behavior);
                 return steering;
             }
         }

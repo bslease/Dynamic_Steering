@@ -10,7 +10,7 @@ public class Separation : SteeringBehavior
     public Kinematic[] targets;
 
     // the threshold to take action
-    float threshold = 5f;
+    float threshold = 5f; // 5
 
     // the constant coefficient of decay for the inverse square law
     float decayCoefficient = 100f;

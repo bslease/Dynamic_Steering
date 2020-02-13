@@ -20,19 +20,20 @@ public class ObstacleAvoidance : Seek
         //if (Physics.Raycast(character.transform.position, character.transform.TransformDirection(Vector3.forward), out hit, lookahead))
         if (Physics.Raycast(character.transform.position, character.linearVelocity, out hit, lookahead))
         {
-            Debug.DrawRay(character.transform.position, character.linearVelocity.normalized * hit.distance, Color.yellow, 0.5f);
+            //Debug.DrawRay(character.transform.position, character.linearVelocity.normalized * hit.distance, Color.yellow, 0.5f);
             //Debug.Log("Hit " + hit.collider);
             return hit.point - (hit.normal * avoidDistance);
         }
         else
         {
-            Debug.DrawRay(character.transform.position, character.linearVelocity.normalized * lookahead, Color.white, 0.5f);
+            //Debug.DrawRay(character.transform.position, character.linearVelocity.normalized * lookahead, Color.white, 0.5f);
             //Debug.Log("safe");
             // nothing to avoid
             //return base.getTargetPosition();
+            return Vector3.positiveInfinity; // hack because I can't return null
         }
 
-        return base.getTargetPosition();
+        //return base.getTargetPosition();
     }
 
 }

@@ -19,17 +19,22 @@ public class Seek : SteeringBehavior
     public override SteeringOutput getSteering()
     {
         SteeringOutput result = new SteeringOutput();
+        Vector3 targetPosition = getTargetPosition();
+        if (targetPosition == Vector3.positiveInfinity)
+        {
+            return null;
+        }
 
         // Get the direction to the target
         if (flee)
         {
             //result.linear = character.transform.position - target.transform.position;
-            result.linear = character.transform.position - getTargetPosition();
+            result.linear = character.transform.position - targetPosition;
         }
         else
         {
             //result.linear = target.transform.position - character.transform.position;
-            result.linear = getTargetPosition() - character.transform.position;
+            result.linear = targetPosition - character.transform.position;
         }
 
         // give full acceleration along this direction
