@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class Flocker : Kinematic
 {
+    public bool avoidObstacles = false;
     public GameObject myCohereTarget;
     BlendedSteering mySteering;
-    //Separation myMoveType;
-    //LookWhereGoing myRotateType;
+    PrioritySteering myAdvancedSteering;
 
-    // Start is called before the first frame update
+    // prioritized isn't working because my obstacle avoidance
+    // extends seek and defaults to it if there's nothing to avoid
+    // so obstacle avoidance is always running or almost never
+    // depending on epsilon
+
     void Start()
     {
         // Separate from other birds
@@ -28,14 +32,14 @@ public class Flocker : Kinematic
         }
         separate.targets = kBirds;
 
-        // Cohere to center of mass
+        // Cohere to center of mass - ez mode
         Arrive cohere = new Arrive();
         cohere.character = this;
         cohere.target = myCohereTarget;
 
+        // look where center of mass is going - ez mode
         LookWhereGoing myRotateType = new LookWhereGoing();
         myRotateType.character = this;
-        //myRotateType.target = myTarget;
 
         mySteering = new BlendedSteering();
         mySteering.behaviors = new BehaviorAndWeight[3];
@@ -48,15 +52,37 @@ public class Flocker : Kinematic
         mySteering.behaviors[2] = new BehaviorAndWeight();
         mySteering.behaviors[2].behavior = myRotateType;
         mySteering.behaviors[2].weight = 1f;
+
+        // set up prioritysteering
+        ObstacleAvoidance myAvoid = new ObstacleAvoidance();
+        myAvoid.character = this;
+        myAvoid.target = myCohereTarget;
+        BlendedSteering myHighPrioritySteering = new BlendedSteering();
+        myHighPrioritySteering.behaviors = new BehaviorAndWeight[1];
+        myHighPrioritySteering.behaviors[0] = new BehaviorAndWeight();
+        myHighPrioritySteering.behaviors[0].behavior = myAvoid;
+        myHighPrioritySteering.behaviors[0].weight = 1f;
+
+        myAdvancedSteering = new PrioritySteering();
+        myAdvancedSteering.groups = new BlendedSteering[2];
+        myAdvancedSteering.groups[0] = new BlendedSteering();
+        myAdvancedSteering.groups[0] = myHighPrioritySteering;
+        myAdvancedSteering.groups[1] = new BlendedSteering();
+        myAdvancedSteering.groups[1] = mySteering;
     }
 
     // Update is called once per frame
     protected override void Update()
     {
         steeringUpdate = new SteeringOutput();
-        //steeringUpdate.linear = myMoveType.getSteering().linear;
-        //steeringUpdate.angular = myRotateType.getSteering().angular;
-        steeringUpdate = mySteering.getSteering();
+        if (!avoidObstacles)
+        {
+            steeringUpdate = mySteering.getSteering();
+        }
+        else
+        {
+            steeringUpdate = myAdvancedSteering.getSteering();
+        }
         base.Update();
     }
 }

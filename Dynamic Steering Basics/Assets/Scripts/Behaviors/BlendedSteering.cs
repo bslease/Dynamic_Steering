@@ -13,7 +13,7 @@ public class BlendedSteering
 
     public BehaviorAndWeight[] behaviors;
 
-    float maxAcceleration = 1f;
+    float maxAcceleration = 1f; // 1
     float maxRotation = 5f;
 
     public SteeringOutput getSteering()

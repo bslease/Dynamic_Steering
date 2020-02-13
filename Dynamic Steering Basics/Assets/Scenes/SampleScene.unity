@@ -139,7 +139,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &64351048
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -157,6 +157,7 @@ MonoBehaviour:
   maxSpeed: 10
   maxAngularVelocity: 45
   myTarget: {fileID: 0}
+  avoidObstacles: 1
   myCohereTarget: {fileID: 1881264848}
 --- !u!135 &64351049
 SphereCollider:
@@ -167,7 +168,7 @@ SphereCollider:
   m_GameObject: {fileID: 64351047}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
@@ -250,7 +251,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &90038934
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -268,6 +269,7 @@ MonoBehaviour:
   maxSpeed: 10
   maxAngularVelocity: 45
   myTarget: {fileID: 0}
+  avoidObstacles: 1
   myCohereTarget: {fileID: 1881264848}
 --- !u!135 &90038935
 SphereCollider:
@@ -278,7 +280,7 @@ SphereCollider:
   m_GameObject: {fileID: 90038933}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
@@ -472,7 +474,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &376570353
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -490,6 +492,7 @@ MonoBehaviour:
   maxSpeed: 10
   maxAngularVelocity: 45
   myTarget: {fileID: 0}
+  avoidObstacles: 1
   myCohereTarget: {fileID: 1881264848}
 --- !u!135 &376570354
 SphereCollider:
@@ -500,7 +503,7 @@ SphereCollider:
   m_GameObject: {fileID: 376570352}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
@@ -592,7 +595,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 432178424}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.5000001
   m_Height: 2
   m_Direction: 1
@@ -651,7 +654,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 432178424}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.93, y: 1.2507555, z: 1.41}
+  m_LocalPosition: {x: 4.93, y: 0, z: 1.41}
   m_LocalScale: {x: 0.25, y: 0.75, z: 0.25}
   m_Children: []
   m_Father: {fileID: 0}
@@ -685,7 +688,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 673877612}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.5000001
   m_Height: 2
   m_Direction: 1
@@ -744,7 +747,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 673877612}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.97, y: 1.2507555, z: 1.29}
+  m_LocalPosition: {x: -1.97, y: 0, z: 1.29}
   m_LocalScale: {x: 0.25, y: 0.75, z: 0.25}
   m_Children: []
   m_Father: {fileID: 0}
@@ -928,7 +931,7 @@ Transform:
   m_GameObject: {fileID: 727626721}
   m_LocalRotation: {x: 0, y: 0.39089176, z: 0, w: 0.92043674}
   m_LocalPosition: {x: 6.25, y: 0, z: -14.25}
-  m_LocalScale: {x: 6.34, y: 1, z: 1}
+  m_LocalScale: {x: 6.34, y: 6.6, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 18
@@ -975,7 +978,7 @@ SphereCollider:
   m_GameObject: {fileID: 741079890}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
@@ -1154,7 +1157,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &797360350
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1172,6 +1175,7 @@ MonoBehaviour:
   maxSpeed: 10
   maxAngularVelocity: 45
   myTarget: {fileID: 0}
+  avoidObstacles: 1
   myCohereTarget: {fileID: 1881264848}
 --- !u!135 &797360351
 SphereCollider:
@@ -1182,7 +1186,7 @@ SphereCollider:
   m_GameObject: {fileID: 797360349}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
@@ -1265,7 +1269,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &837738564
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1283,6 +1287,7 @@ MonoBehaviour:
   maxSpeed: 10
   maxAngularVelocity: 45
   myTarget: {fileID: 0}
+  avoidObstacles: 1
   myCohereTarget: {fileID: 1881264848}
 --- !u!135 &837738565
 SphereCollider:
@@ -1293,7 +1298,7 @@ SphereCollider:
   m_GameObject: {fileID: 837738563}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
@@ -1498,7 +1503,7 @@ SphereCollider:
   m_GameObject: {fileID: 846873315}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
@@ -1579,6 +1584,7 @@ MonoBehaviour:
   maxSpeed: 10
   maxAngularVelocity: 45
   myTarget: {fileID: 0}
+  avoidObstacles: 1
   myCohereTarget: {fileID: 1881264848}
 --- !u!1 &932717508
 GameObject:
@@ -1985,7 +1991,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 1122445233}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.5000001
   m_Height: 2
   m_Direction: 1
@@ -2044,7 +2050,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1122445233}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.09, y: 1.2507555, z: -6.08}
+  m_LocalPosition: {x: -2.09, y: 0, z: -6.08}
   m_LocalScale: {x: 0.25, y: 0.75, z: 0.25}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2292,7 +2298,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1341057583
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2310,6 +2316,7 @@ MonoBehaviour:
   maxSpeed: 10
   maxAngularVelocity: 45
   myTarget: {fileID: 0}
+  avoidObstacles: 1
   myCohereTarget: {fileID: 1881264848}
 --- !u!135 &1341057584
 SphereCollider:
@@ -2320,7 +2327,7 @@ SphereCollider:
   m_GameObject: {fileID: 1341057582}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
@@ -2403,7 +2410,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1472299683
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2421,6 +2428,7 @@ MonoBehaviour:
   maxSpeed: 10
   maxAngularVelocity: 45
   myTarget: {fileID: 0}
+  avoidObstacles: 1
   myCohereTarget: {fileID: 1881264848}
 --- !u!135 &1472299684
 SphereCollider:
@@ -2431,7 +2439,7 @@ SphereCollider:
   m_GameObject: {fileID: 1472299682}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
@@ -2606,7 +2614,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1735539294
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2718,7 +2726,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1751120244
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2736,6 +2744,7 @@ MonoBehaviour:
   maxSpeed: 10
   maxAngularVelocity: 45
   myTarget: {fileID: 0}
+  avoidObstacles: 1
   myCohereTarget: {fileID: 1881264848}
 --- !u!135 &1751120245
 SphereCollider:
@@ -2746,7 +2755,7 @@ SphereCollider:
   m_GameObject: {fileID: 1751120243}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
@@ -2971,7 +2980,7 @@ BoxCollider:
   m_GameObject: {fileID: 1881264848}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -3147,7 +3156,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1986941521
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3165,6 +3174,7 @@ MonoBehaviour:
   maxSpeed: 10
   maxAngularVelocity: 45
   myTarget: {fileID: 0}
+  avoidObstacles: 1
   myCohereTarget: {fileID: 1881264848}
 --- !u!135 &1986941522
 SphereCollider:
@@ -3175,7 +3185,7 @@ SphereCollider:
   m_GameObject: {fileID: 1986941520}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
@@ -3471,7 +3481,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 2116943548}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.5000001
   m_Height: 2
   m_Direction: 1
@@ -3530,7 +3540,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2116943548}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.9, y: 1.2507555, z: -5.83}
+  m_LocalPosition: {x: 4.9, y: 0, z: -5.83}
   m_LocalScale: {x: 0.25, y: 0.75, z: 0.25}
   m_Children: []
   m_Father: {fileID: 0}
