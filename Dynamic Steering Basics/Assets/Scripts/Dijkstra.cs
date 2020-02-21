@@ -1,14 +1,15 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Dijkstra
+public static class Dijkstra
 {
     // This structure is used to keep track of the information we need
     // for each node.
-    class NodeRecord
+    class NodeRecord : IComparable<NodeRecord>
     {
-        public GameObject node;
+        public Node node;
         public Connection connection;
         public float costSoFar;
 
@@ -49,6 +50,11 @@ public class Dijkstra
             nodeRecords.Add(n);
         }
 
+        public void remove(NodeRecord n)
+        {
+            nodeRecords.Remove(n);
+        }
+
         public NodeRecord smallestElement()
         {
             nodeRecords.Sort();
@@ -60,7 +66,7 @@ public class Dijkstra
             return nodeRecords.Count;
         }
 
-        public bool contains(GameObject node)
+        public bool contains(Node node)
         {
             foreach (NodeRecord n in nodeRecords)
             {
@@ -73,9 +79,22 @@ public class Dijkstra
             return false;
         }
 
+        public NodeRecord find(Node node)
+        {
+            foreach (NodeRecord n in nodeRecords)
+            {
+                if (n.node == node)
+                {
+                    return n;
+                }
+            }
+
+            return null;
+        }
+
     }
 
-    Connection[] pathfind(Graph graph, GameObject start, GameObject goal)
+    public static List<Connection> pathfind(Graph graph, Node start, Node goal)
     {
         // Initialize the record for the start node.
         NodeRecord startRecord = new NodeRecord();
@@ -89,10 +108,11 @@ public class Dijkstra
         PathfindingList closed = new PathfindingList();
 
         // Iterate through processing each node
+        NodeRecord current = new NodeRecord();
         while (open.length() > 0)
         {
             // Find the smallest element in the open list
-            NodeRecord current = open.smallestElement();
+            current = open.smallestElement();
 
             // If it is the goal node, then terminate
             if (current.node == goal)
@@ -101,14 +121,16 @@ public class Dijkstra
             }
 
             // Otherwise get its outgoing connections.
-            Connection[] connections = graph.getConnections(current.node);
+            List<Connection> connections = graph.getConnections(current.node);
 
             // Loop through each connection in turn.
             foreach (Connection connection in connections)
             {
                 // Get the cost estimate for the end node
-                GameObject endNode = connection.getToNode();
+                Node endNode = connection.getToNode();
                 float endNodeCost = current.costSoFar + connection.getCost();
+
+                NodeRecord endNodeRecord = new NodeRecord();
 
                 // Skip if the node is closed
                 if (closed.contains(endNode))
@@ -120,10 +142,65 @@ public class Dijkstra
                 {
                     // Here we find the record in the open list
                     // corresponding to the endNode
+                    endNodeRecord = open.find(endNode);
+                    if (endNodeRecord != null && endNodeRecord.costSoFar < endNodeCost)
+                    {
+                        continue;
+                    }
+                }
+                // Otherwise we know we've got an unvisited node, so make a
+                // record for it
+                else
+                {
+                    endNodeRecord = new NodeRecord();
+                    endNodeRecord.node = endNode;
+                }
+
+                // We're here if we need to update the node. Update the
+                // cost and connection.
+                endNodeRecord.costSoFar = endNodeCost;
+                endNodeRecord.connection = connection;
+
+                // And add it to the open list
+                if (!open.contains(endNode))
+                {
+                    open.add(endNodeRecord);
                 }
             }
+
+            // We've finished looking at the connections for the current
+            // node, so add it to the closed list and remove it from the 
+            // open list.
+            open.remove(current);
+            closed.add(current);
         }
 
-        return null;
+        // We're here if we've either found the goal, or if we've no more
+        // nodes to search. Find which.
+        if (current.node != goal)
+        {
+            // We've run out of nodes without finding the goal, so there's
+            // no solution
+            return null;
+        }
+        else
+        {
+            // Compile the list of connections in the path.
+            List<Connection> path = new List<Connection>();
+
+            // Work back along the path, accumulating connections
+            while (current.node != start)
+            {
+                path.Add(current.connection);
+                //current = current.connection.getFromNode(); // << This is Millington. This doesn't work because current needs to be a full NodeRecord.
+                Node fromNode = current.connection.getFromNode();
+                current = closed.find(fromNode);
+            }
+
+            // Reverse the path and return it.
+            path.Reverse();
+            return path;
+        }
+
     }
 }

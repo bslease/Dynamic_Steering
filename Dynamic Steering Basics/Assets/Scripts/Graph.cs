@@ -4,30 +4,66 @@ using UnityEngine;
 
 public class Graph
 {
+    List<Connection> mConnections;
+
     // an array of connections outgoing from the given node
-    public Connection[] getConnections(GameObject fromNode)
+    public List<Connection> getConnections(Node fromNode)
     {
-        return null;
+        List<Connection> connections = new List<Connection>();
+        foreach (Connection c in mConnections)
+        {
+            if (c.getFromNode() == fromNode)
+            {
+                connections.Add(c);
+            }
+        }
+        return connections;
+    }
+
+    public void Build()
+    {
+        // find all nodes in scene
+        // iterate over the nodes
+        //   create connection objects,
+        //   stuff them in mConnections
+        mConnections = new List<Connection>();
+
+        Node[] nodes = GameObject.FindObjectsOfType<Node>();
+        foreach (Node fromNode in nodes)
+        {
+            foreach (Node toNode in fromNode.ConnectsTo)
+            {
+                float cost = (toNode.transform.position - fromNode.transform.position).magnitude;
+                Connection c = new Connection(cost, fromNode, toNode);
+                mConnections.Add(c);
+            }
+        }
     }
 }
 
 public class Connection
 {
     float cost;
-    GameObject fromNode;
-    GameObject toNode;
+    Node fromNode;
+    Node toNode;
 
+    public Connection(float cost, Node fromNode, Node toNode)
+    {
+        this.cost = cost;
+        this.fromNode = fromNode;
+        this.toNode = toNode;
+    }
     public float getCost()
     {
         return cost;
     }
 
-    public GameObject getFromNode()
+    public Node getFromNode()
     {
         return fromNode;
     }
 
-    public GameObject getToNode()
+    public Node getToNode()
     {
         return toNode;
     }
