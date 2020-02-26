@@ -36,8 +36,8 @@ public class FiringSolution
     public Nullable<float> GetTimeToTarget(Vector3 start, Vector3 end, float muzzleV, Vector3 gravity)
 	{
         // Calculate the vector from the target back to the start
-        //Vector3 delta = start - end;
-        Vector3 delta = end - start;
+        Vector3 delta = start - end;
+        //Vector3 delta = end - start;
 
 		// Caclulate the real-valued a,b,c coefficents of a
 		// conventional quadratic equation
@@ -76,8 +76,9 @@ public class FiringSolution
 		}
 		else
 		{
-			ttt = Mathf.Min(time0, time1);
-		}
+            ttt = Mathf.Min(time0, time1);
+            //ttt = Mathf.Max(time0, time1);
+        }
 
         return ttt;
 	}
