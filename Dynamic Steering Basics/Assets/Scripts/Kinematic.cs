@@ -56,7 +56,7 @@ public class Kinematic : MonoBehaviour
         }
         if (Mathf.Abs(angularVelocity) > maxAngularVelocity)
         {
-            angularVelocity = maxAngularVelocity * (angularVelocity / angularVelocity);
+            angularVelocity = maxAngularVelocity * (angularVelocity / Mathf.Abs(angularVelocity));
         }
     }
 
