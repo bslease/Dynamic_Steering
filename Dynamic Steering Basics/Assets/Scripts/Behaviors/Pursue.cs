@@ -29,7 +29,6 @@ public class Pursue : Seek
             // use a smaller prediction time
             predictionTime = distanceToTarget / mySpeed;
         }
-        Debug.Log(predictionTime);
 
         // 2. get the current velocity of our target and add an offset based on our prediction time
         //Kinematic myMovingTarget = target.GetComponent(typeof(Kinematic)) as Kinematic;
