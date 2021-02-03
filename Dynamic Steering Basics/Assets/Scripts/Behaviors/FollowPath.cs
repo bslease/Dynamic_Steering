@@ -8,7 +8,11 @@ public class FollowPath : Seek
 
     // Millington p. 77: The distance along the path to generate the target. Can be
     // negative if the character is moving in the reverse direction.
-    // Note: using GameObjects as waypoints reduces the need for this
+    // Note: Millington assumes his rabbit chaser is trying to cohere to a spline
+    //   so in order to pick a seek target, he has to 1. find a point on the spline that he is closest to 
+    //   and then 2. offset that point along the spline in order
+    //   Instead, let's use an array of gameObjects as waypoints and just seek to their positions
+    // In other words, we won't use pathOffset, but I leave it here so we can talk about it
     float pathOffset;
 
     // The current position on the path
